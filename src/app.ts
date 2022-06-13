@@ -21,6 +21,7 @@ import {
 import { AdvancedDynamicTexture, Button, Control } from "@babylonjs/gui";
 import { Environment } from "./environment";
 import { Player } from "./characterController";
+import { PlayerInput } from "./inputController";
 
 enum State {
   START = 0,
@@ -37,6 +38,7 @@ class App {
 
   //Game State Related
   public assets;
+  private _input: PlayerInput;
   private _environment;
   private _player: Player;
 
@@ -232,8 +234,8 @@ class App {
       outer.bakeTransformIntoVertices(Matrix.Translation(0, 1.5, 0));
 
       //for collisions
-      outer.ellipsoid = new Vector3(1, 1.5, 1);
-      outer.ellipsoidOffset = new Vector3(0, 1.5, 0);
+      // outer.ellipsoid = new Vector3(1, 1.5, 1);
+      // outer.ellipsoidOffset = new Vector3(0, 1.5, 0);
 
       outer.rotationQuaternion = new Quaternion(0, 1, 0, 0); // rotate the player mesh 180 since we want to see the back of the player
 
@@ -294,7 +296,8 @@ class App {
     shadowGenerator.darkness = 0.4;
 
     //Create the player
-    this._player = new Player(this.assets, scene, shadowGenerator); //dont have inputs yet so we dont need to pass it in
+    this._player = new Player(this.assets, scene, shadowGenerator, this._input);
+    const camera = this._player.activatePlayerCamera();
   }
 
   private async _goToGame() {
@@ -327,6 +330,9 @@ class App {
       this._goToLose();
       scene.detachControl(); //observables disabled
     });
+
+    //--INPUT--
+    this._input = new PlayerInput(scene); //detect keyboard/mobile inputs
 
     //primitive character and setting
     await this._initializeGameAsync(scene);
