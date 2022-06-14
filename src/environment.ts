@@ -24,8 +24,7 @@ export class Environment {
     const result = await SceneLoader.ImportMeshAsync(
       null,
       "./models/",
-      "Map.glb",
-      // "envSetting.glb",
+      "envSetting.glb",
       this._scene
     );
 
