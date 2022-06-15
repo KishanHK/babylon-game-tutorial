@@ -18,6 +18,8 @@ import {
   Quaternion,
   Matrix,
   SceneLoader,
+  ActionManager,
+  ExecuteCodeAction,
 } from "@babylonjs/core";
 import { AdvancedDynamicTexture, Button, Control } from "@babylonjs/gui";
 import { Environment } from "./environment";
@@ -254,6 +256,7 @@ class App {
         //body is our actual player mesh
         const body = root;
         body.scaling = new Vector3(0.1, 0.1, 0.1);
+
         body.parent = outer;
         body.isPickable = false; //so our raycasts dont hit ourself
         body.getChildMeshes().forEach((m) => {
