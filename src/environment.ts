@@ -25,6 +25,7 @@ export class Environment {
       null,
       "./models/",
       "envSetting.glb",
+      // "fbsEnv.glb",
       this._scene
     );
 
