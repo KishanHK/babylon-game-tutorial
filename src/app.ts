@@ -244,7 +244,8 @@ class App {
       return SceneLoader.ImportMeshAsync(
         null,
         "./models/",
-        "player.glb",
+        // "player.glb",
+        "MyAvatar1.glb",
         scene
       ).then((result) => {
         const root = result.meshes[0];
