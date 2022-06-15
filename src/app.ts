@@ -243,14 +243,17 @@ class App {
 
       return SceneLoader.ImportMeshAsync(
         null,
-        "./models/",
-        // "player.glb",
-        "MyAvatar1.glb",
+        "https://assets.babylonjs.com/meshes/",
+        "HVGirl.glb",
+        // "./models/",
+        // // "player.glb",
+        // "MyAvatar1.glb",
         scene
       ).then((result) => {
         const root = result.meshes[0];
         //body is our actual player mesh
         const body = root;
+        body.scaling = new Vector3(0.1, 0.1, 0.1);
         body.parent = outer;
         body.isPickable = false; //so our raycasts dont hit ourself
         body.getChildMeshes().forEach((m) => {
