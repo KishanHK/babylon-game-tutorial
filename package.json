@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack",
     "start": "webpack-dev-server --port 8080",
-    "deploy": "gh-pages -d ./dist/client"
+    "deploy": "gh-pages -d ./dist"
   },
   "author": "Hari Kishan",
   "license": "ISC",
